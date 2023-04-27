@@ -1,10 +1,14 @@
 import CardList from "../components/CardList";
-import SearchField from "../components/ui/SearchField";
+import { useEffect, useContext } from "react";
+import AuthContext from "../components/store/auth_context";
 
 const Home = () => {
+  const context = useContext(AuthContext);
+  useEffect(() => {
+    context.getMovies();
+  }, []);
   return (
     <>
-      <SearchField />
       <CardList />
     </>
   );

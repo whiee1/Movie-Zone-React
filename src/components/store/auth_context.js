@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext } from "react";
 import axios from "axios";
 
 export const AuthContext = createContext({
@@ -23,13 +23,14 @@ export const AuthContextProvider = (props) => {
   const [page, setPage] = useState(1);
 
   const [clickedMovie, setClickedMovie] = useState();
-  const [showDetails, setShowDetails] = useState(false);
+
+  const [showDetailPage, setShowDetailPage] = useState(false);
+
+  const [searchResults, setSearchResults] = useState();
 
   //Functions
-
   const getMovies = async (searchKey) => {
     const type = searchKey ? "search" : "discover";
-
     const {
       data: { results },
     } = await axios.get(`${API_URL}/${type}/movie?`, {
@@ -39,8 +40,14 @@ export const AuthContextProvider = (props) => {
       },
     });
 
-    setMovies(results);
+    if (type === "search") {
+      setSearchResults(results);
+    } else {
+      setMovies(results);
+    }
   };
+
+  console.log({ searchResults });
 
   // const getMovies = () => {
   //   console.log("kolla", API_KEY + API_URL);
@@ -77,8 +84,11 @@ export const AuthContextProvider = (props) => {
         clickedMovie: clickedMovie,
         setClickedMovie: setClickedMovie,
 
-        showDetails: showDetails,
-        setShowDetails: setShowDetails,
+        showDetailPage: showDetailPage,
+        setShowDetailPage: setShowDetailPage,
+
+        searchResults: searchResults,
+        setSearchResults: setSearchResults,
       }}
     >
       {props.children}

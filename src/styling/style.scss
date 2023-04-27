@@ -18,6 +18,14 @@ code {
     monospace;
 }
 
+nav{
+  display: flex;
+  justify-content: space-evenly;
+  
+}
+
+
+
 .cardContainer{
   padding: 10px 5px;
   max-width: 200px;

@@ -7,12 +7,9 @@ const MovieDetails = () => {
 
   const movie = context.clickedMovie;
 
-  console.log(movie);
-
   return (
     <>
       <Hero movie={movie} />
-      <h1></h1>
     </>
   );
 };

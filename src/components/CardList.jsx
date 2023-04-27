@@ -1,21 +1,23 @@
 import Card from "./Card";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import AuthContext from "./store/auth_context";
 
-const CardList = (props) => {
+const CardList = () => {
   const context = useContext(AuthContext);
 
-  useEffect(() => {
-    context.getMovies();
-  }, []);
-  console.log(context.movies);
+  console.log("context movies", context.movies);
+  console.log("context searched movie", context.searchResults);
 
-  return (
-    <div className="moviesContainer">
-      {context.movies?.map((movie, i) => {
-        return <Card movie={movie} key={movie.id} />;
-      })}
-    </div>
-  );
+  const renderMovies = () => {
+    return (
+      <div className="moviesContainer">
+        {(context.searchResults || context.movies).map((movie) => (
+          <Card movie={movie} key={movie.id} />
+        ))}
+      </div>
+    );
+  };
+
+  return <>{renderMovies()}</>;
 };
 export default CardList;
