@@ -73,22 +73,20 @@ export const AuthContextProvider = (props) => {
   return (
     <AuthContext.Provider
       value={{
-        getMovies: getMovies,
+        getMovies,
+        page,
+        setPage,
 
-        page: page,
-        setPage: setPage,
+        movies,
+        setMovies,
 
-        movies: movies,
-        setMovies: setMovies,
+        clickedMovie,
+        setClickedMovie,
+        showDetailPage,
+        setShowDetailPage,
 
-        clickedMovie: clickedMovie,
-        setClickedMovie: setClickedMovie,
-
-        showDetailPage: showDetailPage,
-        setShowDetailPage: setShowDetailPage,
-
-        searchResults: searchResults,
-        setSearchResults: setSearchResults,
+        searchResults,
+        setSearchResults,
       }}
     >
       {props.children}

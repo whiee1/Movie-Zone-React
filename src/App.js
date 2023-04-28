@@ -5,13 +5,13 @@ import SignUpForm from "./components/SignUp";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useState } from "react";
 import Nav from "./components/Nav";
-
+import ForgotPassword from "./components/ForgotPassword";
 import Landing from "./screens/Landing";
 
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
   const auth = getAuth();
 
   onAuthStateChanged(auth, (user) => {
@@ -32,6 +32,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUpForm />} />
         <Route path="/movie/:title" element={<MovieDetails />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
       </Routes>
     </>
   );

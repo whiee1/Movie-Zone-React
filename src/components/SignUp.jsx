@@ -20,7 +20,7 @@ const SignUpForm = () => {
       if (result.success) {
         navigate("/home");
       } else {
-        setError("Email is already registrated");
+        setError("error"); // låste lägga till conditional rendering. Olkart om mail är upptagen eller lösen för kort
       }
     } catch (error) {
       console.log(error.message);

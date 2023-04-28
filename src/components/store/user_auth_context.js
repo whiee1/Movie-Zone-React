@@ -1,18 +1,16 @@
-import { useState, createContext } from "react";
+import { createContext } from "react";
 import { auth } from "../../firebase";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged,
-  getAuth,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 
 const UserAuthContext = createContext({});
 
 export const UserAuthProvider = (props) => {
-  const auth = getAuth();
-
+  //Funktioner
   // Loggar in
   const logIn = async (email, password) => {
     try {
@@ -22,10 +20,11 @@ export const UserAuthProvider = (props) => {
         password
       );
       console.log(userCredential);
+
       return { success: true };
     } catch (error) {
       console.log(error);
-      return { success: false, message: error.message };
+      return { success: false, message: error.message }; //success för att kolla om error ska skrivas till användaren
     }
   };
 
@@ -38,24 +37,40 @@ export const UserAuthProvider = (props) => {
         password
       );
       console.log(userCredential);
+
       return { success: true };
     } catch (error) {
-      console.log(error);
+      return { success: false, message: error.message };
+    }
+  };
+
+  // skicka iväg ett reset password mail till emailen som användaren angett
+  const resetPassword = async (email) => {
+    const actionCodeSettings = {
+      url: "http://localhost:3000/", //Skickar användaren till login sidan
+      handleCodeInApp: false,
+    };
+    try {
+      await sendPasswordResetEmail(auth, email, actionCodeSettings);
+      return { success: true };
+    } catch (error) {
       return { success: false, message: error.message };
     }
   };
 
   //Loggar ut
   const logOut = () => {
-    return auth.signOut();
+    signOut(auth);
   };
 
   return (
     <UserAuthContext.Provider
       value={{
-        signUp: signUp,
-        logIn: logIn,
-        logOut: logOut,
+        signUp,
+        logIn,
+        logOut,
+        resetPassword,
+        // confirmPasswordReset,
       }}
     >
       {props.children}
