@@ -1,11 +1,23 @@
 import SearchField from "./ui/SearchField";
 import LogoutBtn from "./ui/LogoutBtn";
+import DeleteAccount from "./ui/DeleteAccount";
+import HomeBtn from "./ui/HomeBtn";
+import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <nav>
+    <nav className="navBar">
+      <div>
+        <button className="homeBtn navBtn">
+          <Link to={"/home"}> Home</Link>
+        </button>
+      </div>
+
       <SearchField />
-      <LogoutBtn />
+      <div>
+        <LogoutBtn />
+        <DeleteAccount />
+      </div>
     </nav>
   );
 };

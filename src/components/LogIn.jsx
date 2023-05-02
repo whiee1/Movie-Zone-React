@@ -18,6 +18,7 @@ const LogInForm = () => {
       setError("");
       const result = await context.logIn(email, password);
       if (result.success) {
+        sessionStorage.setItem("loggedIn", true);
         navigate("/home");
       } else {
         setError("Email or password is incorrect");
@@ -29,41 +30,45 @@ const LogInForm = () => {
 
   return (
     <div className="formContainer">
-      <h2>Sign In</h2>
-      {error && (
-        <div className="error">
-          <h3>{error}</h3>
-        </div>
-      )}
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="fieldWrapper">
-          <label htmlFor="emailField" />
-          Email:
-          <input
-            id="emailField"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="fieldWrapper">
-          <label htmlFor="passwordInputField" />
-          Password:
-          <input
-            id="passwordInputField"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div>
-          <Link to={"/forgot-password"}>Forgot Password?</Link>
-        </div>
+      <div className="formWrapper">
+        <h2>Sign In</h2>
+        {error && (
+          <div className="error">
+            <h3>{error}</h3>
+          </div>
+        )}
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="fieldWrapper">
+            <label htmlFor="emailField" />
+            Email:
+            <input
+              id="emailField"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="fieldWrapper">
+            <label htmlFor="passwordInputField" />
+            Password:
+            <input
+              id="passwordInputField"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="middle">
+            <Link to={"/forgot-password"}>Forgot Password?</Link>
+          </div>
 
-        <button type="submit">Sign In</button>
-      </form>
+          <button className="btnPrimary" type="submit">
+            Sign In
+          </button>
+        </form>
+      </div>
 
-      <div>
+      <div className="middle">
         Don't have an account? <Link to={"/signup"}> Sign up!</Link>{" "}
       </div>
     </div>

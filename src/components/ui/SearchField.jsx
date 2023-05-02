@@ -12,7 +12,7 @@ const SearchField = () => {
     e.preventDefault();
     context
       .getMovies(searchKey)
-      .then(() => setSearchKey(""), navigate("/home"))
+      .then(() => navigate(`/search/:searchKey`), setSearchKey(""))
       .catch((error) => console.error(error));
   };
 
@@ -23,13 +23,17 @@ const SearchField = () => {
           Search for movies
         </label>
         <input
+          className="searchField"
           type="text"
-          placeholder="Write a movie title"
+          placeholder="Search for movies"
           id="searchInputField"
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
         />
-        <button type="submit">Search </button>
+        <button className="navBtn" type="submit">
+          <i className="fa fa-search"></i>
+          Search
+        </button>
       </form>
     </>
   );
