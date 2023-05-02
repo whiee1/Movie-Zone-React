@@ -20,7 +20,7 @@ const SignUpForm = () => {
       if (result.success) {
         navigate("/home");
       } else {
-        setError("error"); // låste lägga till conditional rendering. Olkart om mail är upptagen eller lösen för kort
+        setError(error); // låste lägga till conditional rendering. Olkart om mail är upptagen eller lösen för kort
       }
     } catch (error) {
       console.log(error.message);
@@ -29,38 +29,42 @@ const SignUpForm = () => {
 
   return (
     <div className="formContainer">
-      <h2>Sign Up</h2>
-      {error && (
-        <div className="error">
-          <h3>{error}</h3>
-        </div>
-      )}
-      <form className="form" onSubmit={handleSubmit}>
-        <div className="fieldWrapper">
-          <label htmlFor="signUpEmail" />
-          Email:
-          <input
-            id="signUpEmail"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
-        <div className="fieldWrapper">
-          <label htmlFor="signUpPassword" />
-          Password:
-          <input
-            id="signUpPassword"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="submit">Sign Up</button>
-      </form>
+      <div className="formWrapper">
+        <h2>Sign Up</h2>
+        {error && (
+          <div className="error">
+            <h3>{error}</h3>
+          </div>
+        )}
+        <form className="form" onSubmit={handleSubmit}>
+          <div className="fieldWrapper">
+            <label htmlFor="signUpEmail" />
+            Email:
+            <input
+              id="signUpEmail"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="fieldWrapper">
+            <label htmlFor="signUpPassword" />
+            Password:
+            <input
+              id="signUpPassword"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className="btnPrimary" type="submit">
+            Sign Up
+          </button>
+        </form>
+      </div>
 
-      <div>
-        Already have an account? <Link to={"/"}>Log in</Link>{" "}
+      <div className="middle">
+        Already have an account? <Link to={"/"}>Sign In</Link>
       </div>
     </div>
   );

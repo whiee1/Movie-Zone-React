@@ -29,30 +29,37 @@ const ForgotPassword = () => {
 
   return (
     <div className="formContainer">
-      <form className="form" onSubmit={handleSubmit}>
-        {error && (
-          <div className="error">
-            <h3>{error}</h3>
-          </div>
-        )}
-        <div className="fieldWrapper">
-          <label htmlFor="emailField" />
-          Email:
-          <input
-            id="emailField"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </div>
+      <div className="formWrapper">
+        <h2>Forgot Password</h2>
+        <form className="form" onSubmit={handleSubmit}>
+          <p></p>
 
-        <button type="submit">Reset Password</button>
-      </form>
-      <div>
-        <Link to={"/"}> Sign In</Link>
+          {error && (
+            <div className="error">
+              <h3>{error}</h3>
+            </div>
+          )}
+          <div className="fieldWrapper">
+            <label htmlFor="emailField" />
+            Email:
+            <input
+              id="emailField"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+
+          <button className="btnPrimary" type="submit">
+            Reset Password
+          </button>
+          <div className="middle">
+            <Link to={"/"}> Sign In</Link>
+          </div>
+        </form>
       </div>
 
-      <div>
+      <div className="middle">
         Don't have an account? <Link to={"/signup"}> Sign up!</Link>{" "}
       </div>
     </div>

@@ -10,20 +10,129 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-nav{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+
+}
+
+
+
+
+.btnPrimary {
+  background-color: rgb(25 69 255);
+  color: white;
+}
+
+
+.formContainer {
+
+
+   display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ 
+
+ .formWrapper{
+  padding: 20px;
+  max-width: 500px;
+  min-width: 300px;
+  border: 1px solid;
+  margin: 10px 0;
+ }
+ input, button {
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+ h2{
+  margin: 0;
+
+ }
+ 
+ .middle, h2{
+  text-align: center;
+ }
+
+ .form{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+ 
+  button{
+    margin: 1rem 0;
+  }
+
+  .fieldWrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 0;
+ 
+  }
+ }
   
 }
 
+.navBar {
+  background-color: rgb(20, 20, 21);
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+
+  .homeBtn 
+    {
+           a{
+        text-decoration: none;
+        color: white;
+      }
+      a:hover{
+        background-color: rgb(20, 20, 21);
+        text-decoration: underline;
+        color: rgb(80, 235, 155);
+      }
+    
+      }
+
+  .navBtn{
+    background-color: rgb(20, 20, 21);
+    height: 100%;
+    color: white;
+    font-weight: bold;
+    border: none;
+
+   
+
+}
+.navBtn:hover{
+
+  background-color: rgb(37, 37, 37);
+  text-decoration: underline;
+     color: rgb(80, 235, 155);
+
+ }
+    
+  
+  .searchField{
+    height: 30px;
+    border-radius: 10px;
+border: none;
+    text-align: center;
+    margin: 0 5px;
+  }
+
+
+  .searchLabel{
+    display: none;
+  }
+}
+
+
+
+.pagination{
+  display: flex;
+  justify-content: center;
+}
 
 
 .cardContainer{
@@ -85,9 +194,3 @@ grid-template-columns: 1fr 1fr 1fr 1fr; */
   background-color: rgb(53, 53, 53);
 }
 
-.formContainer {
-  width: 400px;
-  padding: 40px;
-  background-color: rgba(61, 61, 61, 0.619);
-  
-}

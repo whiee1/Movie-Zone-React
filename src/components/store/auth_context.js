@@ -32,11 +32,12 @@ export const AuthContextProvider = (props) => {
   const getMovies = async (searchKey) => {
     const type = searchKey ? "search" : "discover";
     const {
-      data: { results },
+      data: { results } /* SKRIV KOMMENTAR    */,
     } = await axios.get(`${API_URL}/${type}/movie?`, {
       params: {
         api_key: API_KEY,
         query: searchKey,
+        // page: page,
       },
     });
 
