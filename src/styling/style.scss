@@ -1,4 +1,9 @@
-
+ $primary: rgb(25 69 255);
+ $nav: rgb(20, 20, 21);
+$navHover: rgb(37, 37, 37);
+$hoverBlue:rgb(63 255 250);
+$backBtn: rgba(65, 67, 66, 0.219);
+$lightGray: rgb(229, 228, 228);
 *{
   box-sizing: border-box;
 }
@@ -10,16 +15,15 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  display: flex;
-  justify-content: center;
+
+ 
 
 }
 
 
 
-
 .btnPrimary {
-  background-color: rgb(25 69 255);
+  background-color: $primary;
   color: white;
 }
 
@@ -37,13 +41,19 @@ body {
   padding: 20px;
   max-width: 500px;
   min-width: 300px;
-  border: 1px solid;
+
   margin: 10px 0;
+  border-radius: 5px;
+  background-color: $lightGray;
+  box-shadow: 0px 6px 16px 1px rgba(0, 0, 0, 0.67);
+
+
  }
  input, button {
   height: 35px;
   border-radius: 5px;
   border: 1px solid gray;
+
 }
 
  h2{
@@ -75,7 +85,7 @@ body {
 }
 
 .navBar {
-  background-color: rgb(20, 20, 21);
+  background-color: $nav;
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -87,15 +97,15 @@ body {
         color: white;
       }
       a:hover{
-        background-color: rgb(20, 20, 21);
+        background-color: $navHover;
         text-decoration: underline;
-        color: rgb(80, 235, 155);
+        color: $hoverBlue;
       }
     
       }
 
   .navBtn{
-    background-color: rgb(20, 20, 21);
+    background-color: $nav;
     height: 100%;
     color: white;
     font-weight: bold;
@@ -106,9 +116,9 @@ body {
 }
 .navBtn:hover{
 
-  background-color: rgb(37, 37, 37);
+  background-color: $navHover;
   text-decoration: underline;
-     color: rgb(80, 235, 155);
+     color: $hoverBlue;
 
  }
     
@@ -120,7 +130,7 @@ border: none;
     text-align: center;
     margin: 0 5px;
   }
-
+ 
 
   .searchLabel{
     display: none;
@@ -129,35 +139,54 @@ border: none;
 
 
 
-.pagination{
-  display: flex;
-  justify-content: center;
-}
+// .pagination{
+//   display: flex;
+//   justify-content: center;
+// }
+
 
 
 .cardContainer{
-  padding: 10px 5px;
+  padding:3px;
   max-width: 200px;
-}
-.bild{
-  background-color: antiquewhite;
-  width: 100%;
-  
-}
+  .bild{
+    background-color: antiquewhite;
+    width: 100%;
+    
+  }
 
-.titleWrapper{
-  background-color: rgba(0, 0, 0, 0.744);
-  width: 100%;
+  .cardMovieTitle{
+    display: flex;
+    flex-direction: column;
+  }
+.cardTextWrapper{
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  
+  height: 70px;
+  background-color: $nav;
   color: white;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  
+
+  .smallInfoWrapper{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+  
+  }
 }
-.titleWrapper h1 {
-  margin: 0;
-  font-size: 16px;
-}
-.cardContainer:hover{
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
+&:hover{
   transform: scale(1.05, 1.05);
 }
+
+}
+
+
 
 .moviesContainer{
 
@@ -165,32 +194,87 @@ border: none;
   display: flex;
  justify-content: center;
   flex-wrap: wrap;
-  border: 1px solid green;
+  border: 1px solid;
   margin-top: 200px ;
-/* display: grid;
-gap: 15px;
-grid-template-columns: 1fr 1fr 1fr 1fr; */
 
 }
+
+.back{
+  z-index: 2;
+  position: fixed;
+  left: 20px;
+  top: 18%;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: rgba(65, 67, 66, 0.219);
+  color: white;
+  font-weight: bold;
+  min-width: 70px;
+
+  &:hover{
+    background-color: rgba(216, 225, 220, 0.255);
+    color: $hoverBlue;
+  }
+}
+
+
+
 
 .heroContainer{
-  height: 300px;
+  max-height: 300px;
   width: 100%;
-  background-color: antiquewhite;
-  margin-bottom: 60px;
-
-
-  
-}
-
-.heroImage{
- width: 100%;
- overflow: hidden;
-  
-  
-}
-.searchLabel{
+  overflow: hidden;
+  position: relative;
   color: white;
-  background-color: rgb(53, 53, 53);
+
+  .heroTitle{
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    font-size: 25px;
+  }
+
+
+
+  .heroImage{
+    width: 100%;
+   background-color: antiquewhite;
+
+   }
+ 
+}
+
+
+.infoContainer{
+  
+
+padding: 10px;
+
+  color: white;
+  background-color: rgb(41, 41, 41);
+
+  h2{
+    text-align: center;
+  }
+
+  .infoWrapper{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  ul{
+    padding: 0;
+    li{
+      list-style: none;
+      color: $hoverBlue;
+    }
+  }
+
+}
+
+.overview{
+  width: 60%;
+  padding: 20px;
 }
 

@@ -7,7 +7,7 @@ const HomeBtn = () => {
   const navigate = useNavigate();
   const handleClick = () => {
     context.getMovies();
-    navigate("/home");
+    navigate("/");
   };
 
   return (

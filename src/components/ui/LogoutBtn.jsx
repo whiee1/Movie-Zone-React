@@ -20,7 +20,7 @@ const LogoutBtn = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     await context.logOut();
-    navigate("/");
+    navigate("/login");
     console.log("Signed Out");
   };
 

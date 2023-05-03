@@ -7,9 +7,9 @@ const Back = () => {
         onClick={() => {
           navigate(-1);
         }}
-        className="Back"
+        className="back"
       >
-        Back
+        <i className="fa fa-arrow-left"> </i> Back
       </button>
     </>
   );

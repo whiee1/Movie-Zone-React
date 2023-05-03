@@ -8,20 +8,23 @@ import UserAuthContext from "./components/store/user_auth_context";
 import Nav from "./components/Nav";
 import ForgotPassword from "./components/ForgotPassword";
 import Landing from "./screens/Landing";
-import { Routes, Route } from "react-router-dom";
-
+import { Routes, Route, useNavigate } from "react-router-dom";
+import LogInForm from "./components/LogIn";
 import SearchPage from "./screens/SearchPage";
 
 function App() {
+  const navigate = useNavigate();
   const { signUp, logIn, logOut, resetPassword, deleteAccount } =
     useContext(UserAuthContext);
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  // const [isLoggedIn, setIsLoggedIn] = useState();
+
+  const isLoggedIn = sessionStorage.getItem("loggedIn");
+
+  console.log({ isLoggedIn });
 
   useEffect(() => {
-    const loggedIn = sessionStorage.getItem("loggedIn");
-    setIsLoggedIn(loggedIn);
-  }, [signUp, logIn, logOut, resetPassword, deleteAccount]);
-  console.log({ isLoggedIn });
+    !isLoggedIn && navigate("/login");
+  }, []);
 
   return (
     <>
@@ -30,17 +33,15 @@ function App() {
       {isLoggedIn && <Nav />}
       <main>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<LogInForm />} />
           <Route path="/signup" element={<SignUpForm />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
 
-          {isLoggedIn && (
-            <>
-              <Route path="/home" element={<Home />} />
-              <Route path="/movie/:title" element={<MovieDetails />} />
-              <Route path="/search/:searchKey" element={<SearchPage />} />
-            </>
-          )}
+          <>
+            <Route path="/" element={<Home />} />
+            <Route path="/movie/:title" element={<MovieDetails />} />
+            <Route path="/search/:searchKey" element={<SearchPage />} />
+          </>
         </Routes>
       </main>
     </>
