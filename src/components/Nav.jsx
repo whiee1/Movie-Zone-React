@@ -9,7 +9,7 @@ const Nav = () => {
     <nav className="navBar">
       <div>
         <button className="homeBtn navBtn">
-          <Link to={"/home"}> Home</Link>
+          <Link to={"/"}> Home</Link>
         </button>
       </div>
 

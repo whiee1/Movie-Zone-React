@@ -54,7 +54,7 @@ const ForgotPassword = () => {
             Reset Password
           </button>
           <div className="middle">
-            <Link to={"/"}> Sign In</Link>
+            <Link to={"/login"}> Sign In</Link>
           </div>
         </form>
       </div>

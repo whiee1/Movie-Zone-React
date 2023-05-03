@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import AuthContext from "../store/auth_context";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SearchField = () => {
   const context = useContext(AuthContext);

@@ -27,8 +27,17 @@ const Card = (props) => {
               src={IMAGE_PATH + movie.poster_path}
               alt="Movie poster"
             />
-            <div className="titleWrapper">
-              <h2>{movie.title}</h2>
+
+            <div className="cardTextWrapper">
+              <span className="cardMovieTitle">{movie.title}</span>
+
+              <div className="smallInfoWrapper">
+                <span>{movie.release_date}</span>
+                <span>
+                  <i className="fa fa-star rating"></i>
+                  {movie.vote_average.toFixed(1)}
+                </span>
+              </div>
             </div>
           </>
         )}

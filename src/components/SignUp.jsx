@@ -18,7 +18,7 @@ const SignUpForm = () => {
       setError("");
       const result = await context.signUp(email, password);
       if (result.success) {
-        navigate("/home");
+        navigate("/");
       } else {
         setError(error); // låste lägga till conditional rendering. Olkart om mail är upptagen eller lösen för kort
       }
@@ -64,7 +64,7 @@ const SignUpForm = () => {
       </div>
 
       <div className="middle">
-        Already have an account? <Link to={"/"}>Sign In</Link>
+        Already have an account? <Link to={"/login"}>Sign In</Link>
       </div>
     </div>
   );

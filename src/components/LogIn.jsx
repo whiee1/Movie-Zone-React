@@ -19,7 +19,7 @@ const LogInForm = () => {
       const result = await context.logIn(email, password);
       if (result.success) {
         sessionStorage.setItem("loggedIn", true);
-        navigate("/home");
+        navigate("/");
       } else {
         setError("Email or password is incorrect");
       }

@@ -4,17 +4,16 @@ const Hero = (props) => {
 
   return (
     <header className="heroContainer">
-      {movie && movie.backdrop_path ? (
-        <div>
-          {" "}
+      {movie && movie.backdrop_path && (
+        <>
           <img
             className="heroImage"
             src={IMAGE_PATH + movie.backdrop_path}
             alt="Movie poster"
           />
-          <h2>{movie.title}</h2>{" "}
-        </div>
-      ) : null}
+          <h2 className="heroTitle">{movie.title}</h2>
+        </>
+      )}
     </header>
   );
 };

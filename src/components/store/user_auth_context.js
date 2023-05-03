@@ -50,7 +50,7 @@ export const UserAuthProvider = (props) => {
       );
       console.log(userCredential);
       sessionStorage.setItem("loggedIn", "true");
-      setLoggedIn(true);
+      // setLoggedIn(true);
       return { success: true };
     } catch (error) {
       console.log(error.code);
@@ -76,7 +76,7 @@ export const UserAuthProvider = (props) => {
   const logOut = () => {
     signOut(auth);
     sessionStorage.clear();
-    setLoggedIn(false);
+    // setLoggedIn(false);
   };
 
   const deleteAccount = async () => {
