@@ -7,10 +7,15 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(3, 15, 31);
+}
+
+main {
+  padding-bottom: 50px;
 }
 
 .btnPrimary {
-  background-color: rgb(25, 69, 255);
+  background-color: #1F8093;
   color: white;
 }
 
@@ -20,42 +25,64 @@ body {
   justify-content: center;
   align-items: center;
 }
+.formContainer a {
+  color: #00C6BB;
+}
+.formContainer a a:visited {
+  color: #00C6BB;
+}
+.formContainer a a:active {
+  color: #00C6BB;
+}
+.formContainer .outsideFormLink {
+  color: white;
+}
 .formContainer .formWrapper {
   padding: 20px;
   max-width: 500px;
   min-width: 300px;
+  min-height: 200px;
   margin: 10px 0;
   border-radius: 5px;
   background-color: rgb(229, 228, 228);
   box-shadow: 0px 6px 16px 1px rgba(0, 0, 0, 0.67);
+  color: rgb(5, 24, 49);
 }
-.formContainer input, .formContainer button {
-  height: 35px;
-  border-radius: 5px;
-  border: 1px solid gray;
-}
-.formContainer h2 {
-  margin: 0;
-}
-.formContainer .middle, .formContainer h2 {
+.formContainer .formWrapper .middle, .formContainer .formWrapper h2, .formContainer .formWrapper .error {
   text-align: center;
 }
-.formContainer .form {
+.formContainer .formWrapper .middle a, .formContainer .formWrapper h2 a, .formContainer .formWrapper .error a {
+  color: rgb(5, 24, 49);
+}
+.formContainer .formWrapper .successMessage {
+  text-align: center;
+  padding: 10px;
+  color: rgb(5, 24, 49);
+}
+.formContainer .formWrapper .form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
-.formContainer .form button {
+.formContainer .formWrapper .form input, .formContainer .formWrapper .form button {
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+.formContainer .formWrapper .form button {
   margin: 1rem 0;
 }
-.formContainer .form .fieldWrapper {
+.formContainer .formWrapper .form .fieldWrapper {
   display: flex;
   flex-direction: column;
   padding: 5px 0;
 }
+.formContainer .formWrapper .form .passwordHelp {
+  font-size: 12px;
+}
 
 .navBar {
-  background-color: rgb(20, 20, 21);
+  background-color: rgb(5, 24, 49);
   height: 50px;
   display: flex;
   justify-content: space-between;
@@ -65,21 +92,21 @@ body {
   color: white;
 }
 .navBar .homeBtn a:hover {
-  background-color: rgb(37, 37, 37);
+  transform: scale(1.05, 1.05);
   text-decoration: underline;
-  color: rgb(63, 255, 250);
+  color: #00C6BB;
 }
 .navBar .navBtn {
-  background-color: rgb(20, 20, 21);
+  background-color: rgb(5, 24, 49);
   height: 100%;
   color: white;
   font-weight: bold;
   border: none;
 }
 .navBar .navBtn:hover {
-  background-color: rgb(37, 37, 37);
+  transform: scale(1.1, 1.1);
   text-decoration: underline;
-  color: rgb(63, 255, 250);
+  color: #00C6BB;
 }
 .navBar .searchField {
   height: 30px;
@@ -95,6 +122,7 @@ body {
 .cardContainer {
   padding: 3px;
   max-width: 200px;
+  min-height: 290px;
 }
 .cardContainer .bild {
   background-color: antiquewhite;
@@ -106,7 +134,7 @@ body {
 }
 .cardContainer .cardTextWrapper {
   height: 70px;
-  background-color: rgb(20, 20, 21);
+  background-color: rgb(3, 15, 31);
   color: white;
   padding: 3px;
   display: flex;
@@ -126,13 +154,12 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  border: 1px solid;
   margin-top: 200px;
 }
 
 .back {
   z-index: 2;
-  position: fixed;
+  position: absolute;
   left: 20px;
   top: 18%;
   height: 35px;
@@ -145,7 +172,7 @@ body {
 }
 .back:hover {
   background-color: rgba(216, 225, 220, 0.255);
-  color: rgb(63, 255, 250);
+  color: #00C6BB;
 }
 
 .heroContainer {
@@ -155,12 +182,6 @@ body {
   position: relative;
   color: white;
 }
-.heroContainer .heroTitle {
-  position: absolute;
-  bottom: 10px;
-  left: 15px;
-  font-size: 25px;
-}
 .heroContainer .heroImage {
   width: 100%;
   background-color: antiquewhite;
@@ -168,26 +189,47 @@ body {
 
 .infoContainer {
   padding: 10px;
-  color: white;
-  background-color: rgb(41, 41, 41);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .infoContainer h2 {
+  margin-top: 0;
   text-align: center;
+  color: #1F8093;
+  font-size: 3em;
+  text-shadow: 2px 4px 0px rgb(33, 32, 32), -1px 3px 7px rgb(105, 118, 128), 0 0 0.2em rgb(5, 24, 49);
 }
 .infoContainer .infoWrapper {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  width: 90%;
 }
-.infoContainer ul {
+.infoContainer .infoWrapper ul {
   padding: 0;
 }
-.infoContainer ul li {
+.infoContainer .infoWrapper ul li {
   list-style: none;
-  color: rgb(63, 255, 250);
+  color: #00C6BB;
 }
-
-.overview {
+.infoContainer .infoWrapper .release {
+  display: flex;
+  flex-direction: column;
+  color: #00C6BB;
+}
+.infoContainer .infoWrapper .overview {
+  color: white;
   width: 60%;
   padding: 20px;
+}
+
+.react-confirm-alert .react-confirm-alert-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.react-confirm-alert .react-confirm-alert-body .react-confirm-alert-button-group button {
+  background: #1F8093;
+  font-weight: bold;
 }/*# sourceMappingURL=style.css.map */

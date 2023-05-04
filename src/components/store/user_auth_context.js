@@ -10,6 +10,11 @@ import {
 } from "firebase/auth";
 import { useState } from "react";
 
+// const authErrors = {
+//   "auth/weak-password": "Your password is to short",
+//   "auth/email-already-in-use": "Email is already in use",
+//   "auth/user-not-found": "Email or password is incorrect",
+// };
 /*    error code för validering
       auth/weak-password
       auth/email-already-in-use
@@ -19,7 +24,7 @@ import { useState } from "react";
 const UserAuthContext = createContext({});
 
 export const UserAuthProvider = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false); /// Kolla och ta bort
 
   //Funktioner
   // Loggar in
@@ -35,7 +40,8 @@ export const UserAuthProvider = (props) => {
       setLoggedIn(true);
       return { success: true };
     } catch (error) {
-      console.log(error);
+      console.log(error.code);
+
       return { success: false, message: error.message }; //success för att kolla om error ska skrivas till användaren
     }
   };
@@ -88,7 +94,7 @@ export const UserAuthProvider = (props) => {
       return { success: false, error: "User is not signed in" };
     } else {
       //användaren behöver uppsatera sina credentials för att kunna radera sitt konto
-      const password = prompt("Please enter your current password");
+      const password = prompt("Enter your password to delete your");
 
       const credential = EmailAuthProvider.credential(email, password);
 
@@ -111,6 +117,8 @@ export const UserAuthProvider = (props) => {
       }
     }
   };
+
+  const handleConfirmAlert = () => {};
 
   //   //Be användaren om uppgifter
   //   const promptForCredentials = () => {
@@ -169,6 +177,8 @@ export const UserAuthProvider = (props) => {
         //state
         loggedIn,
         setLoggedIn,
+
+        handleConfirmAlert,
       }}
     >
       {props.children}
