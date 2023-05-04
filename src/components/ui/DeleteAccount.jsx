@@ -8,7 +8,7 @@ const DeleteAccount = () => {
 
   const handleClick = async () => {
     const response = await context.deleteAccount();
-    response.success && navigate("/");
+    response.success && navigate("/login");
   };
 
   return (

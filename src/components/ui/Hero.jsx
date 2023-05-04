@@ -11,7 +11,6 @@ const Hero = (props) => {
             src={IMAGE_PATH + movie.backdrop_path}
             alt="Movie poster"
           />
-          <h2 className="heroTitle">{movie.title}</h2>
         </>
       )}
     </header>

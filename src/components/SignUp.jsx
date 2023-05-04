@@ -7,7 +7,7 @@ const SignUpForm = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
 
@@ -15,12 +15,12 @@ const SignUpForm = () => {
     e.preventDefault();
 
     try {
-      setError("");
+      setErrorMessage("");
       const result = await context.signUp(email, password);
       if (result.success) {
         navigate("/");
       } else {
-        setError(error); // låste lägga till conditional rendering. Olkart om mail är upptagen eller lösen för kort
+        setErrorMessage("Failed to create an account."); // låste lägga till conditional rendering. Olkart om mail är upptagen eller lösen för kort
       }
     } catch (error) {
       console.log(error.message);
@@ -31,9 +31,9 @@ const SignUpForm = () => {
     <div className="formContainer">
       <div className="formWrapper">
         <h2>Sign Up</h2>
-        {error && (
+        {errorMessage && (
           <div className="error">
-            <h3>{error}</h3>
+            <h3>{errorMessage}</h3>
           </div>
         )}
         <form className="form" onSubmit={handleSubmit}>
@@ -63,7 +63,7 @@ const SignUpForm = () => {
         </form>
       </div>
 
-      <div className="middle">
+      <div className="middle outsideFormLink">
         Already have an account? <Link to={"/login"}>Sign In</Link>
       </div>
     </div>
