@@ -1,5 +1,5 @@
 const Hero = (props) => {
-  const IMAGE_PATH = "https://image.tmdb.org/t/p/original";
+  const HERO_IMAGE_PATH = process.env.REACT_APP_HERO_IMAGE_PATH;
   const { movie } = props;
 
   return (
@@ -8,7 +8,7 @@ const Hero = (props) => {
         <>
           <img
             className="heroImage"
-            src={IMAGE_PATH + movie.backdrop_path}
+            src={HERO_IMAGE_PATH + movie.backdrop_path}
             alt="Movie poster"
           />
         </>

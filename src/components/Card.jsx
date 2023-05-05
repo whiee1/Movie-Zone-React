@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AuthContext from "./store/auth_context";
 import MovieDetails from "../screens/MovieDetails";
 import { useNavigate } from "react-router-dom";
-export const IMAGE_PATH = "https://image.tmdb.org/t/p/w342";
+export const CARD_IMAGE_PATH = process.env.REACT_APP_CARD_IMAGE_PATH;
 
 const Card = (props) => {
   const { movie } = props;
@@ -24,7 +24,7 @@ const Card = (props) => {
           <>
             <img
               className="bild"
-              src={IMAGE_PATH + movie.poster_path}
+              src={CARD_IMAGE_PATH + movie.poster_path}
               alt="Movie poster"
             />
 

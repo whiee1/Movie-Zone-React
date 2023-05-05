@@ -13,8 +13,8 @@ export const AuthContext = createContext({
 
 export const AuthContextProvider = (props) => {
   //ta bort sen
-  const API_URL = "https://api.themoviedb.org/3";
-  const API_KEY = "1c938d93f52a6f0cd2477a8a7b76ba54";
+  const API_URL = process.env.REACT_APP_API_URL;
+  const API_KEY = process.env.REACT_APP_API_KEY;
   const adress =
     "https://api.themoviedb.org/3/discover/movie?api_key=1c938d93f52a6f0cd2477a8a7b76ba54&page=2";
 
