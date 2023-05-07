@@ -11,7 +11,7 @@ const HomeBtn = () => {
   };
 
   return (
-    <button className="homeBtn" onClick={handleClick}>
+    <button className="homeBtn navBtn" onClick={handleClick}>
       Home
     </button>
   );

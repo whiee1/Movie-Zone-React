@@ -7,12 +7,14 @@ const SearchField = () => {
   const navigate = useNavigate();
 
   const [searchKey, setSearchKey] = useState("");
+  const [showSearchField, setShowSearchField] = useState(false);
 
   const search = (e) => {
     e.preventDefault();
+    setShowSearchField(!showSearchField);
     context
       .getMovies(searchKey)
-      .then(() => navigate(`/search/:searchKey`), setSearchKey(""))
+      .then(() => navigate(`/search/:${searchKey}`), setSearchKey(""))
       .catch((error) => console.error(error));
   };
 
@@ -30,7 +32,8 @@ const SearchField = () => {
           value={searchKey}
           onChange={(e) => setSearchKey(e.target.value)}
         />
-        <button className="navBtn" type="submit">
+
+        <button className="searchBtn navBtn">
           <i className="fa fa-search"></i>
           Search
         </button>

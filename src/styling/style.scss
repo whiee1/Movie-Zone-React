@@ -1,3 +1,6 @@
+@use 'navbar.scss';
+
+
 $lightest:
 rgb(202 221 237)
 rgb(146 194 219)
@@ -126,58 +129,242 @@ a:active{
    }
 }};
 
+
+
+
 .navBar {
+  
+ width: 100%; 
+ background-color: $nav;
+
+
+ height: 50px;
+
+ .largeScreenNav{
+  display: none;
+ }
+ .wrapper{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  
+ }
+
+  .burger{
+    display: block;
+    color: #00C6BB;
+    background-color: $nav;
+    width: 50px;
+    height: 50px;
+    border: none;
+
+    .burgerIcon{
+      width: 35px;
+      height: 35px;
+
+    }
+  }
+
+
+  form{
+    background-color: $nav;
+    .searchBtn {
+      color: aliceblue;
+      background-color: $nav;
+      border: none;
+      padding: 10px 0;
+
+      &:hover{
+        transform: scale(1.1, 1.1);
+        text-decoration: underline;
+           color: $hoverBlue;
+       
+      }
+    }
+      .searchField{
+        height: 30px;
+        border-radius: 10px;
+    border: none;
+        text-align: center;
+        margin: 0 13px;
+      
+      }
+      .searchLabel{
+        display: none;
+      }
+      
+    }
+    
+ 
+  
+ 
+
+
+ 
+.largeScreenNav{
+  display: none;
+}
+// form{
+//   background-color: $nav;
+//   .searchBtn {
+//     color: aliceblue;
+//     background-color: $nav;
+//     border: none;
+//     padding: 10px 0;
+
+//     &:hover{
+//       transform: scale(1.1, 1.1);
+//       text-decoration: underline;
+//          color: $hoverBlue;
+     
+//     }
+//   }
+//     .searchField{
+//       height: 30px;
+//       border-radius: 10px;
+//   border: none;
+//       text-align: center;
+//       margin: 0 13px;
+    
+//     }
+//     .searchLabel{
+//       display: none;
+//     }
+    
+//   }
+  .smallScreenNav{
+  position: relative;
+  top: 300px;
+
+  }
+  .menuItems{
+ 
+    width: 100vw;
+  
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+    padding-bottom: 15px ;
+    background-color: aliceblue;
+    min-height: 150px;
+    position: relative;
+
+    .close {
+      font-size: 25px;
+      font-weight: bolder;
+      width: 40px;
+      height: 40px;
+      margin-left: 20px;
+      border: none;
+      background-color: aliceblue;
+      position: absolute;
+      top: 20px;
+      z-index: 2;
+      &:hover{
+        transform: scale(1.3, 1.3);
+       
+           color: $hoverBlue;
+       
+      }
+    }
+
+  
+   
+
+ 
+
+  .navBtn{
+    
+    background-color: aliceblue;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+    border: none;
+    color: $nav;
+
+    &:hover{
+      transform: scale(1.1, 1.1);
+      text-decoration: underline;
+         color: $hoverBlue;
+     
+    }
+}
+
+}
+
+
+
+
+@media screen and (min-width: 600px){
+ 
+
+  .close{
+    display: none;
+  }
+
+  .wrapper{
+    display: none
+  }
+
+  .menuItems{
+    display: none;
+  }
+
+
+  .largeScreenNav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   background-color: $nav;
   height: 50px;
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+  padding: 0 10;
+  position: absolut;
+}
 
-  .homeBtn 
-    {
-           a{
-        text-decoration: none;
-        color: white;
-      }
+
+.navBtn{
+  background-color: $nav;
+  color: aliceblue;
+  border: none;
+  height: 100%;
+  font-weight: bold;
+  height: 50px
+}
+
+
+  .navBtn:hover{
+    transform: scale(1.1, 1.1);
+    text-decoration: underline;
+       color: $hoverBlue;
+   
+  }
+
+.homeBtn > a{
+  text-decoration: none;
+  color: aliceblue;
+}     
       a:hover{
-        transform: scale(1.05, 1.05);
+        transform: scale(1.1, 1.1);
         text-decoration: underline;
         color: $hoverBlue;
       }
     
-      }
+      
 
-  .navBtn{
-    background-color: $nav;
-    height: 100%;
-    color: white;
-    font-weight: bold;
-    border: none;
+
+
+
+
+
+ 
+
 }
-.navBtn:hover{
-
-  transform: scale(1.1, 1.1);
-  text-decoration: underline;
-     color: $hoverBlue;
-
- }
-  .searchField{
-    height: 30px;
-    border-radius: 10px;
-border: none;
-    text-align: center;
-    margin: 0 5px;
-  }
-  .searchLabel{
-    display: none;
-  }
 }
 
 
-
-// .pagination{
-//   display: flex;
-//   justify-content: center;
-// }
 
 
 // CARD
@@ -391,5 +578,4 @@ align-items: center;
   }
   
 }
-
 

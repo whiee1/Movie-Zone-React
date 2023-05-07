@@ -1,3 +1,58 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f7f7f7;
+  padding: 10px;
+}
+.navbar__left {
+  flex: 1;
+}
+.navbar__right {
+  display: flex;
+  align-items: center;
+}
+.navbar__right .burgerIcon {
+  display: none;
+}
+.navbar__menu {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  padding: 10px;
+  margin-top: 10px;
+}
+.navbar__menu a {
+  color: #333;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+@media (max-width: 768px) {
+  .navbar__left {
+    display: none;
+  }
+  .navbar__right {
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .navbar__right .burgerIcon {
+    display: block;
+    cursor: pointer;
+  }
+  .navbar__menu {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f7f7;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  .navbar__menu a {
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -82,41 +137,144 @@ main {
 }
 
 .navBar {
+  width: 100%;
   background-color: rgb(5, 24, 49);
   height: 50px;
+}
+.navBar .largeScreenNav {
+  display: none;
+}
+.navBar .wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 }
-.navBar .homeBtn a {
-  text-decoration: none;
-  color: white;
-}
-.navBar .homeBtn a:hover {
-  transform: scale(1.05, 1.05);
-  text-decoration: underline;
+.navBar .burger {
+  display: block;
   color: #00C6BB;
-}
-.navBar .navBtn {
   background-color: rgb(5, 24, 49);
-  height: 100%;
-  color: white;
-  font-weight: bold;
+  width: 50px;
+  height: 50px;
   border: none;
 }
-.navBar .navBtn:hover {
+.navBar .burger .burgerIcon {
+  width: 35px;
+  height: 35px;
+}
+.navBar form {
+  background-color: rgb(5, 24, 49);
+}
+.navBar form .searchBtn {
+  color: aliceblue;
+  background-color: rgb(5, 24, 49);
+  border: none;
+  padding: 10px 0;
+}
+.navBar form .searchBtn:hover {
   transform: scale(1.1, 1.1);
   text-decoration: underline;
   color: #00C6BB;
 }
-.navBar .searchField {
+.navBar form .searchField {
   height: 30px;
   border-radius: 10px;
   border: none;
   text-align: center;
-  margin: 0 5px;
+  margin: 0 13px;
 }
-.navBar .searchLabel {
+.navBar form .searchLabel {
   display: none;
+}
+.navBar .largeScreenNav {
+  display: none;
+}
+.navBar .smallScreenNav {
+  position: relative;
+  top: 300px;
+}
+.navBar .menuItems {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: 15px;
+  background-color: aliceblue;
+  min-height: 150px;
+  position: relative;
+}
+.navBar .menuItems .close {
+  font-size: 25px;
+  font-weight: bolder;
+  width: 40px;
+  height: 40px;
+  margin-left: 20px;
+  border: none;
+  background-color: aliceblue;
+  position: absolute;
+  top: 20px;
+  z-index: 2;
+}
+.navBar .menuItems .close:hover {
+  transform: scale(1.3, 1.3);
+  color: #00C6BB;
+}
+.navBar .menuItems .navBtn {
+  background-color: aliceblue;
+  height: 40px;
+  color: white;
+  font-weight: bold;
+  border: none;
+  color: rgb(5, 24, 49);
+}
+.navBar .menuItems .navBtn:hover {
+  transform: scale(1.1, 1.1);
+  text-decoration: underline;
+  color: #00C6BB;
+}
+@media screen and (min-width: 600px) {
+  .navBar .close {
+    display: none;
+  }
+  .navBar .wrapper {
+    display: none;
+  }
+  .navBar .menuItems {
+    display: none;
+  }
+  .navBar .largeScreenNav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(5, 24, 49);
+    height: 50px;
+    width: 100%;
+    padding: 0 10;
+    position: absolut;
+  }
+  .navBar .navBtn {
+    background-color: rgb(5, 24, 49);
+    color: aliceblue;
+    border: none;
+    height: 100%;
+    font-weight: bold;
+    height: 50px;
+  }
+  .navBar .navBtn:hover {
+    transform: scale(1.1, 1.1);
+    text-decoration: underline;
+    color: #00C6BB;
+  }
+  .navBar .homeBtn > a {
+    text-decoration: none;
+    color: aliceblue;
+  }
+  .navBar a:hover {
+    transform: scale(1.1, 1.1);
+    text-decoration: underline;
+    color: #00C6BB;
+  }
 }
 
 .cardContainer {
