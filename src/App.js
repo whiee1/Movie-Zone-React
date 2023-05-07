@@ -16,7 +16,6 @@ function App() {
   const navigate = useNavigate();
   const { signUp, logIn, logOut, resetPassword, deleteAccount } =
     useContext(UserAuthContext);
-  // const [isLoggedIn, setIsLoggedIn] = useState();
 
   const isLoggedIn = sessionStorage.getItem("loggedIn");
 
