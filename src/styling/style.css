@@ -69,9 +69,26 @@ main {
   padding-bottom: 50px;
 }
 
+.movieZoneLogo {
+  font-family: "Lato", sans-serif;
+  margin: 20px 0;
+  color: #1F8093;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.movieZoneLogo .logo {
+  font-size: 60px;
+  color: #1F8093;
+  margin: 0;
+  position: relative;
+  text-shadow: 2px 4px 0px rgb(33, 32, 32), -1px 3px 7px rgb(5, 24, 49), -1px 2px 0em rgb(175, 237, 233);
+  text-align: center;
+}
+
 .btnPrimary {
   background-color: #1F8093;
-  color: white;
+  color: aliceblue;
 }
 
 .formContainer {
@@ -90,7 +107,7 @@ main {
   color: #00C6BB;
 }
 .formContainer .outsideFormLink {
-  color: white;
+  color: aliceblue;
 }
 .formContainer .formWrapper {
   padding: 20px;
@@ -222,7 +239,7 @@ main {
 .navBar .menuItems .navBtn {
   background-color: aliceblue;
   height: 40px;
-  color: white;
+  color: aliceblue;
   font-weight: bold;
   border: none;
   color: rgb(5, 24, 49);
@@ -250,8 +267,7 @@ main {
     background-color: rgb(5, 24, 49);
     height: 50px;
     width: 100%;
-    padding: 0 10;
-    position: absolut;
+    padding: 0 10px;
   }
   .navBar .navBtn {
     background-color: rgb(5, 24, 49);
@@ -293,7 +309,7 @@ main {
 .cardContainer .cardTextWrapper {
   height: 70px;
   background-color: rgb(3, 15, 31);
-  color: white;
+  color: aliceblue;
   padding: 3px;
   display: flex;
   flex-direction: column;
@@ -319,12 +335,11 @@ main {
   z-index: 2;
   position: absolute;
   left: 20px;
-  top: 18%;
   height: 35px;
   border-radius: 5px;
   border: 1px solid gray;
   background-color: rgba(65, 67, 66, 0.219);
-  color: white;
+  color: aliceblue;
   font-weight: bold;
   min-width: 70px;
 }
@@ -338,7 +353,7 @@ main {
   width: 100%;
   overflow: hidden;
   position: relative;
-  color: white;
+  color: aliceblue;
 }
 .heroContainer .heroImage {
   width: 100%;
@@ -377,7 +392,7 @@ main {
   color: #00C6BB;
 }
 .infoContainer .infoWrapper .overview {
-  color: white;
+  color: aliceblue;
   width: 60%;
   padding: 20px;
 }
@@ -390,4 +405,34 @@ main {
 .react-confirm-alert .react-confirm-alert-body .react-confirm-alert-button-group button {
   background: #1F8093;
   font-weight: bold;
+}
+
+.pagination {
+  color: aliceblue;
+  display: flex;
+  justify-content: center;
+  padding: 30px 5px;
+}
+.pagination button {
+  height: 50px;
+  width: 50px;
+  background-color: #1F8093;
+  border-radius: 5px;
+  border: none;
+  color: rgb(202, 221, 237);
+  font-weight: bold;
+}
+.pagination button:hover {
+  transform: scale(1.1, 1.1);
+}
+.pagination button:active {
+  transform: scale(1.1, 1.1);
+  background-color: #00C6BB;
+}
+.pagination button > * {
+  height: 35px;
+  width: 35px;
+}
+.pagination p {
+  padding: 0 15px;
 }/*# sourceMappingURL=style.css.map */

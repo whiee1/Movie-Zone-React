@@ -2,6 +2,8 @@ import LogoutBtn from "./LogoutBtn";
 import DeleteAccount from "./DeleteAccount";
 
 import HomeBtn from "./HomeBtn";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 const Dropdown = ({ showMenu, setShowMenu, handleShowNavbar }) => {
   return (
@@ -9,10 +11,9 @@ const Dropdown = ({ showMenu, setShowMenu, handleShowNavbar }) => {
       {showMenu && (
         <div className="menuItems">
           <button onClick={handleShowNavbar} className="close">
-            {" "}
-            x{" "}
+            <FontAwesomeIcon icon={faXmark} />
           </button>
-          <HomeBtn />
+          <HomeBtn handleShowNavbar={handleShowNavbar} />
 
           <LogoutBtn />
 

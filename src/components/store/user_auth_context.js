@@ -106,14 +106,8 @@ export const UserAuthProvider = (props) => {
         sessionStorage.clear();
         return { success: true };
       } catch (error) {
-        if (error.code === "auth/wrong-password") {
-          console.log("Wrong password entered");
-          // Prompt the user to enter their current password again
-          return { success: false, error: "Wrong password entered" };
-        } else {
-          console.error("Error deleting user:", error);
-          return { success: false, error };
-        }
+        alert("Unable to delete account, try again.");
+        return { success: false, error: "Unable to delete account" };
       }
     }
   };

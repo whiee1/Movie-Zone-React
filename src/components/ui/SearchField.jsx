@@ -6,15 +6,16 @@ const SearchField = () => {
   const context = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const [searchKey, setSearchKey] = useState("");
-  const [showSearchField, setShowSearchField] = useState(false);
+  const [key, setKey] = useState("");
 
   const search = (e) => {
     e.preventDefault();
-    setShowSearchField(!showSearchField);
+    context.setSearchPage(1);
+    context.setSearchKey(key);
+
     context
-      .getMovies(searchKey)
-      .then(() => navigate(`/search/:${searchKey}`), setSearchKey(""))
+      .getMovies(key)
+      .then(() => navigate(`/search/:${key}`), setKey(""))
       .catch((error) => console.error(error));
   };
 
@@ -29,8 +30,8 @@ const SearchField = () => {
           type="text"
           placeholder="Search for movies"
           id="searchInputField"
-          value={searchKey}
-          onChange={(e) => setSearchKey(e.target.value)}
+          value={key}
+          onChange={(e) => setKey(e.target.value)}
         />
 
         <button className="searchBtn navBtn">

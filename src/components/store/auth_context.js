@@ -15,40 +15,44 @@ export const AuthContextProvider = (props) => {
   //ta bort sen
   const API_URL = process.env.REACT_APP_API_URL;
   const API_KEY = process.env.REACT_APP_API_KEY;
-  const adress =
-    "https://api.themoviedb.org/3/discover/movie?api_key=1c938d93f52a6f0cd2477a8a7b76ba54&page=2";
 
   const [movies, setMovies] = useState([]);
 
   const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
 
   const [clickedMovie, setClickedMovie] = useState();
 
   const [showDetailPage, setShowDetailPage] = useState(false);
 
   const [searchResults, setSearchResults] = useState();
+  const [searchPage, setSearchPage] = useState(1);
+
+  const [searchKey, setSearchKey] = useState("");
 
   //Functions
-  const getMovies = async (searchKey) => {
-    const type = searchKey ? "search" : "discover";
-    const {
-      data: { results } /* SKRIV KOMMENTAR    */,
-    } = await axios.get(`${API_URL}/${type}/movie?`, {
-      params: {
-        api_key: API_KEY,
-        query: searchKey,
-        // page: page,
-      },
-    });
+  const getMovies = async (key) => {
+    const type = key ? "search" : "discover";
 
+    const { data /* SKRIV KOMMENTAR    */ } = await axios.get(
+      `${API_URL}/${type}/movie?`,
+      {
+        params: {
+          api_key: API_KEY,
+          query: searchKey,
+          page: type === "search" ? searchPage : page,
+          // set the correct page number based on whether it is a search or home page
+        },
+      }
+    );
+    // sätt hur många sidor som finns att hämta
+    setTotalPages(data.total_pages);
     if (type === "search") {
-      setSearchResults(results);
+      setSearchResults(data.results);
     } else {
-      setMovies(results);
+      setMovies(data.results);
     }
   };
-
-  console.log({ searchResults });
 
   // const getMovies = () => {
   //   console.log("kolla", API_KEY + API_URL);
@@ -88,6 +92,13 @@ export const AuthContextProvider = (props) => {
 
         searchResults,
         setSearchResults,
+
+        searchPage,
+        setSearchPage,
+        searchKey,
+        setSearchKey,
+        totalPages,
+        setTotalPages,
       }}
     >
       {props.children}
