@@ -11,9 +11,7 @@ import Dropdown from "./ui/Dropdown";
 const Nav = () => {
   const [showMenu, setShowMenu] = useState(false);
 
-  const handleShowNavbar = (e) => {
-    e.preventDefault();
-
+  const handleShowNavbar = () => {
     setShowMenu(!showMenu);
   };
 

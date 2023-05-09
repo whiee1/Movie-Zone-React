@@ -1,9 +1,7 @@
 const MovieZone = () => {
   return (
-    <header>
-      {" "}
-      <h1 className="movieZoneLogo">Movie</h1>
-      <h2 className="movieZoneLogo">Zone</h2>
+    <header className="movieZoneLogo">
+      <h1 className="logo">MOVIE ZONE</h1>
     </header>
   );
 };

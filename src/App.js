@@ -11,7 +11,7 @@ import Landing from "./screens/Landing";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LogInForm from "./components/LogIn";
 import SearchPage from "./screens/SearchPage";
-
+import MovieZone from "./components/ui/MovieZone";
 function App() {
   const navigate = useNavigate();
   const { signUp, logIn, logOut, resetPassword, deleteAccount } =
@@ -28,6 +28,7 @@ function App() {
   return (
     <>
       <div className="App"> Malin Movie Sida</div>
+      <MovieZone />
 
       {isLoggedIn && <Nav />}
       <main>

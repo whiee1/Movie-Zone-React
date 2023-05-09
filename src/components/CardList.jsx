@@ -14,7 +14,6 @@ const CardList = () => {
       </div>
     );
   };
-
   return <>{renderMovies()}</>;
 };
 export default CardList;

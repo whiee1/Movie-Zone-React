@@ -30,7 +30,6 @@ const MovieDetails = () => {
   const context = useContext(AuthContext);
 
   const movie = context.clickedMovie;
-  console.log(movie);
 
   return (
     <>
