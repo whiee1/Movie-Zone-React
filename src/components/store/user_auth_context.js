@@ -87,12 +87,8 @@ export const UserAuthProvider = (props) => {
   // Skapar nytt konto
   const signUp = async (email, password) => {
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const uid = userCredential.user.uid;
+      await createUserWithEmailAndPassword(auth, email, password);
+      const uid = getUid();
       const ref = doc(db, "users", uid);
       await setDoc(ref, { email, likedMovies: [] }).then(() => {
         sessionStorage.setItem("loggedIn", "true");
