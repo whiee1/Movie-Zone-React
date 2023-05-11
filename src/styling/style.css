@@ -153,13 +153,36 @@ main {
   font-size: 12px;
 }
 
+.profile {
+  color: #1F8093;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profile .moviesContainer {
+  margin-top: 100px;
+}
+
 .navBar {
   width: 100%;
   background-color: rgb(5, 24, 49);
   height: 50px;
 }
-.navBar .largeScreenNav {
-  display: none;
+.navBar .profileBtn {
+  background-color: rgb(5, 24, 49);
+  border: none;
+  color: aliceblue;
+  margin-right: 10px;
+}
+.navBar .profileBtn:hover {
+  transform: scale(1.3, 1.3);
+  text-decoration: underline;
+  color: #00C6BB;
+}
+.navBar .profileBtn svg {
+  height: 25px;
+  width: 25px;
 }
 .navBar .wrapper {
   display: flex;
@@ -212,6 +235,7 @@ main {
 }
 .navBar .menuItems {
   width: 100vw;
+  z-index: 3;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -230,7 +254,7 @@ main {
   background-color: aliceblue;
   position: absolute;
   top: 20px;
-  z-index: 2;
+  z-index: 1;
 }
 .navBar .menuItems .close:hover {
   transform: scale(1.3, 1.3);
@@ -269,6 +293,9 @@ main {
     width: 100%;
     padding: 0 10px;
   }
+  .navBar .largeScreenNav div {
+    display: flex;
+  }
   .navBar .navBtn {
     background-color: rgb(5, 24, 49);
     color: aliceblue;
@@ -278,15 +305,6 @@ main {
     height: 50px;
   }
   .navBar .navBtn:hover {
-    transform: scale(1.1, 1.1);
-    text-decoration: underline;
-    color: #00C6BB;
-  }
-  .navBar .homeBtn > a {
-    text-decoration: none;
-    color: aliceblue;
-  }
-  .navBar a:hover {
     transform: scale(1.1, 1.1);
     text-decoration: underline;
     color: #00C6BB;
@@ -328,7 +346,7 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 200px;
+  margin-top: 70px;
 }
 
 .back {
@@ -373,6 +391,21 @@ main {
   font-size: 3em;
   text-shadow: 2px 4px 0px rgb(33, 32, 32), -1px 3px 7px rgb(105, 118, 128), 0 0 0.2em rgb(5, 24, 49);
 }
+.infoContainer .saveMovieBtn {
+  min-height: 40px;
+  border-radius: 10px;
+  border: 3px solid #00C6BB;
+  background-color: rgb(3, 15, 31);
+  font-size: 16px;
+  color: aliceblue;
+  font-weight: bold;
+  padding: 10px;
+  box-shadow: 0px 6px 16px 1px rgba(0, 0, 0, 0.67);
+}
+.infoContainer .saveMovieBtn:hover {
+  transform: scale(1.2, 1.2);
+  box-shadow: -1px 1px 18px 1px rgba(175, 237, 233, 0.54);
+}
 .infoContainer .infoWrapper {
   display: flex;
   justify-content: space-evenly;
@@ -397,6 +430,9 @@ main {
   padding: 20px;
 }
 
+.react-confirm-alert .heroContainer {
+  z-index: 3;
+}
 .react-confirm-alert .react-confirm-alert-body {
   display: flex;
   flex-direction: column;
@@ -435,4 +471,15 @@ main {
 }
 .pagination p {
   padding: 0 15px;
+}
+
+@media screen and (max-width: 600px) {
+  .moviesContainer {
+    margin-top: 200px;
+  }
+}
+@media screen and (max-width: 420px) {
+  .cardContainer {
+    min-width: 90vw;
+  }
 }/*# sourceMappingURL=style.css.map */

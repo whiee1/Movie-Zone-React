@@ -8,41 +8,79 @@ import {
   reauthenticateWithCredential,
   EmailAuthProvider,
 } from "firebase/auth";
+import { db } from "../../firebase";
+import {
+  setDoc,
+  doc,
+  getDoc,
+  updateDoc,
+  arrayRemove,
+  arrayUnion,
+} from "firebase/firestore";
 import { useState } from "react";
-
-// const authErrors = {
-//   "auth/weak-password": "Your password is to short",
-//   "auth/email-already-in-use": "Email is already in use",
-//   "auth/user-not-found": "Email or password is incorrect",
-// };
-/*    error code för validering
-      auth/weak-password
-      auth/email-already-in-use
-
-*/
 
 const UserAuthContext = createContext({});
 
 export const UserAuthProvider = (props) => {
-  const [loggedIn, setLoggedIn] = useState(false); /// Kolla och ta bort
-
+  const [savedMovie, setSavedMovie] = useState(false);
   //Funktioner
   // Loggar in
   const logIn = async (email, password) => {
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log(userCredential);
+      await signInWithEmailAndPassword(auth, email, password);
       sessionStorage.setItem("loggedIn", "true");
-      setLoggedIn(true);
       return { success: true };
     } catch (error) {
-      console.log(error.code);
-
       return { success: false, message: error.message }; //success för att kolla om error ska skrivas till användaren
+    }
+  };
+  const getUid = () => {
+    const user = auth.currentUser;
+    const uid = user.uid;
+    return uid;
+  };
+
+  const addMoviesToList = async (movie) => {
+    const uid = getUid();
+
+    try {
+      const userRef = doc(db, "users", uid);
+      await updateDoc(userRef, {
+        likedMovies: arrayUnion(movie),
+      });
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message, code: error.code };
+    }
+  };
+
+  const [savedMovieList, setSavedMovieList] = useState([]);
+
+  const removeMovieFromList = async (movie) => {
+    const uid = getUid();
+
+    try {
+      const userRef = doc(db, "users", uid);
+      await updateDoc(userRef, {
+        likedMovies: arrayRemove(movie),
+      });
+      return { success: true };
+    } catch (error) {
+      return { success: false, message: error.message, code: error.code };
+    }
+  };
+
+  const getLikedMovies = async () => {
+    const uid = getUid();
+    try {
+      const userRef = doc(db, "users", uid);
+      const userSnapshot = await getDoc(userRef);
+      setSavedMovieList(userSnapshot.data().likedMovies);
+
+      return { success: true, likedMovies: userSnapshot.data().likedMovies };
+    } catch (error) {
+      console.log(error.code);
+      return { success: false, message: error.message, code: error.code };
     }
   };
 
@@ -54,12 +92,14 @@ export const UserAuthProvider = (props) => {
         email,
         password
       );
-      console.log(userCredential);
-      sessionStorage.setItem("loggedIn", "true");
-      // setLoggedIn(true);
+      const uid = userCredential.user.uid;
+      const ref = doc(db, "users", uid);
+      await setDoc(ref, { email, likedMovies: [] }).then(() => {
+        sessionStorage.setItem("loggedIn", "true");
+      });
+
       return { success: true };
     } catch (error) {
-      console.log(error.code);
       return { success: false, message: error.message, code: error.code };
     }
   };
@@ -82,25 +122,25 @@ export const UserAuthProvider = (props) => {
   const logOut = () => {
     signOut(auth);
     sessionStorage.clear();
-    // setLoggedIn(false);
   };
 
   const deleteAccount = async () => {
     const user = auth.currentUser;
     const { email } = user;
     if (!user) {
-      // User is not currently signed in
+      // Användaren är inte inloggad
       console.log("User is not signed in");
       return { success: false, error: "User is not signed in" };
     } else {
-      //användaren behöver uppsatera sina credentials för att kunna radera sitt konto
+      //användaren behöver ange lösenord för att kunna ta bort kontot
       const password = prompt("Enter your password to delete your");
 
       const credential = EmailAuthProvider.credential(email, password);
 
       try {
+        // authentisera användaren
         await reauthenticateWithCredential(user, credential);
-        // User has been reauthenticated, now you can delete their account
+
         await user.delete();
         console.log("User account deleted successfully");
         sessionStorage.clear();
@@ -112,54 +152,6 @@ export const UserAuthProvider = (props) => {
     }
   };
 
-  const handleConfirmAlert = () => {};
-
-  //   //Be användaren om uppgifter
-  //   const promptForCredentials = () => {
-  //     const email = prompt("want to delete account?", "Enter your email:").value
-  //     const password = prompt("Enter your password:");
-  //     console.log("email password", email, password);
-  //     if (email && password) {
-  //       return;
-  //     } else {
-  //       return null;
-  //     }
-  //   };
-  //  //Radera användar konto
-
-  //   const deleteAccount = async () => {
-  //     try {
-  //       const user = auth.currentUser;
-  //       await user.delete();
-  //       console.log("user Deleted");
-  //       sessionStorage.clear();
-  //       return { success: true };
-  //     } catch (error) {
-  //       promptForCredentials()
-  //       console.error("Error deleting user:", error);
-  //       return { success: false, message: error.message };
-  //     }
-  //   };
-
-  // const deleteAccount = async () => {
-  //   try {
-  //     const user = auth.currentUser;
-  //     console.log({ user });
-  //     const credential = promptForCredentials(); // Replace with your own credentials collection method
-  //     if (credential) {
-  //       await user.reauthenticateWithCredential(credential);
-  //       await user.delete();
-  //       console.log("deleted");
-  //       navigate("/");
-  //     } else {
-  //       throw new Error("Invalid credentials");
-  //     }
-  //   } catch (error) {
-  //     console.error(error);
-  //     alert("Failed to delete account.");
-  //   }
-  // };
-
   return (
     <UserAuthContext.Provider
       value={{
@@ -168,11 +160,15 @@ export const UserAuthProvider = (props) => {
         logOut,
         resetPassword,
         deleteAccount,
-        //state
-        loggedIn,
-        setLoggedIn,
 
-        handleConfirmAlert,
+        addMoviesToList,
+        getLikedMovies,
+        removeMovieFromList,
+        savedMovie,
+        setSavedMovie,
+
+        savedMovieList,
+        setSavedMovieList,
       }}
     >
       {props.children}

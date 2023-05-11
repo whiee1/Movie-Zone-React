@@ -7,6 +7,7 @@ export const CARD_IMAGE_PATH = process.env.REACT_APP_CARD_IMAGE_PATH;
 const Card = (props) => {
   const { movie } = props;
   const context = useContext(AuthContext);
+
   const navigate = useNavigate();
 
   const handleClick = async (e) => {

@@ -12,17 +12,18 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import LogInForm from "./components/LogIn";
 import SearchPage from "./screens/SearchPage";
 import MovieZone from "./components/ui/MovieZone";
+import Profile from "./screens/Profile";
 function App() {
   const navigate = useNavigate();
-  const { signUp, logIn, logOut, resetPassword, deleteAccount } =
-    useContext(UserAuthContext);
-
+  const context = useContext(UserAuthContext);
   const isLoggedIn = sessionStorage.getItem("loggedIn");
 
-  console.log({ isLoggedIn });
-
   useEffect(() => {
-    !isLoggedIn && navigate("/login");
+    (async () => {
+      !isLoggedIn && navigate("/login");
+      const response = await context.getLikedMovies();
+      context.setSavedMovieList(response);
+    })();
   }, []);
 
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/movie/:title" element={<MovieDetails />} />
             <Route path="/search/:searchKey" element={<SearchPage />} />
+            <Route path="/profile" element={<Profile />} />
           </>
         </Routes>
       </main>
