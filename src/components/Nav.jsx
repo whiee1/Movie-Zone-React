@@ -3,7 +3,7 @@ import LogoutBtn from "./ui/LogoutBtn";
 import DeleteAccount from "./ui/DeleteAccount";
 import { useState } from "react";
 import HomeBtn from "./ui/HomeBtn";
-
+import ProfileBtn from "./ui/ProfileBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import Dropdown from "./ui/Dropdown";
@@ -20,7 +20,7 @@ const Nav = () => {
       <div className="smallScreen">
         <div className="wrapper">
           <SearchField />
-
+          <ProfileBtn />
           <button onClick={handleShowNavbar} className="burger">
             <FontAwesomeIcon icon={faBars} className="burgerIcon" />
           </button>
@@ -38,6 +38,7 @@ const Nav = () => {
 
         <SearchField />
         <div>
+          <ProfileBtn />
           <LogoutBtn />
           <DeleteAccount />
         </div>
