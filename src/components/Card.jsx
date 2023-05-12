@@ -1,9 +1,8 @@
 import { useContext } from "react";
 import AuthContext from "./store/auth_context";
-import MovieDetails from "../screens/MovieDetails";
 import { useNavigate } from "react-router-dom";
 export const CARD_IMAGE_PATH = process.env.REACT_APP_CARD_IMAGE_PATH;
-
+//Komponenten par emot en film från <CardList/> och vid klick sparas filmen i clickedMovie i context, där MovieDetails sidan hämtar clickedMovie
 const Card = (props) => {
   const { movie } = props;
   const context = useContext(AuthContext);
@@ -18,8 +17,6 @@ const Card = (props) => {
 
   return (
     <>
-      {context.showMovieDetails && <MovieDetails />}
-
       <div className="cardContainer" onClick={handleClick}>
         {movie.poster_path && (
           <>
@@ -36,6 +33,7 @@ const Card = (props) => {
                 <span>{movie.release_date}</span>
                 <span>
                   <i className="fa fa-star rating"></i>
+                  {/* toFixed för att få ett heltal */}
                   {movie.vote_average.toFixed(1)}
                 </span>
               </div>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { confirmAlert } from "react-confirm-alert";
 import "react-confirm-alert/src/react-confirm-alert.css";
 
+// vi klick på kanppen visas en bekräftelsemodal med två alternativ: "Avbryt" och "Bekräfta". Klickar på "Bekräfta" knappen anropar funktionen som loggar ut användaren och navigerar sen till inloggningssidan
 const LogoutBtn = () => {
   const context = useContext(UserAuthContext);
   const navigate = useNavigate();

@@ -1,10 +1,11 @@
 import Hero from "../components/ui/Hero";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../components/store/auth_context";
 import UserAuthContext from "../components/store/user_auth_context";
 import Back from "../components/ui/Back";
 
 const MovieDetails = () => {
+  //key value par för genre och värden fårn API:et
   const movieGenre = {
     Action: 28,
     Adventure: 12,
@@ -26,55 +27,12 @@ const MovieDetails = () => {
     War: 10752,
     Western: 37,
   };
-  // const context = useContext(AuthContext);
-  // const userContext = useContext(UserAuthContext);
-
-  // const movie = context.clickedMovie;
-  // const isMovieSaved = (movie) => {
-  //   return userContext.savedMovieList.some(
-  //     (savedMovie) => savedMovie.id === movie.id
-  //   );
-  // };
-  // const [savedMovie, setSavedMovie] = useState(isMovieSaved(movie));
-
-  // const handleClick = () => {
-  //   if (savedMovie) {
-  //     userContext.removeMovieFromList(movie);
-  //     setSavedMovie(false);
-  //   } else {
-  //     userContext.addMoviesToList(movie);
-  //     setSavedMovie(true);
-  //   }
-  //   // force a re-render of the component
-
-  //   // Update the savedMovie state based on the updated likedMovies
-  //   const isSaved = isMovieSaved(movie);
-  //   setSavedMovie(isSaved);
-  // };
-
-  // const [savedMovie, setSavedMovie] = useState(isMovieSaved(movie));
-
-  // useEffect(() => {
-  //   userContext
-  //     .getLikedMovies()
-  //     .then((res) => userContext.setSavedMovieList(res.likedMovies));
-  // }, []);
-
-  // const handleClick = async () => {
-  //   if (!savedMovie) {
-  //     await userContext.addMoviesToList(movie);
-  //   } else {
-  //     await userContext.removeMovieFromList(movie);
-  //   }
-  //   const isSaved = isMovieSaved(movie);
-  //   console.log({ isSaved });
-  //   setSavedMovie(isSaved);
-  // };
 
   const context = useContext(AuthContext);
   const userContext = useContext(UserAuthContext);
 
   const movie = context.clickedMovie;
+  //Funktionen används för att kontrollera om filmen finns i listan.
   const isMovieSaved = (movie) => {
     return userContext.savedMovieList.some(
       (savedMovie) => savedMovie.id === movie.id
@@ -83,6 +41,7 @@ const MovieDetails = () => {
   const [savedMovie, setSavedMovie] = useState(isMovieSaved(movie));
   const [forceUpdate, setForceUpdate] = useState(false);
 
+  //Funktion för att lägga till eller ta bort en film beroende på om den redan finns där eller inte. setSavedMovie används för att uppdatera state-variabeln och forceUpdate används för att tvinga en uppdatering av komponenten när en film läggs till eller tas bort från listan.
   const handleClick = () => {
     if (savedMovie) {
       userContext.removeMovieFromList(movie);
@@ -95,7 +54,7 @@ const MovieDetails = () => {
     }
   };
   return (
-    <>
+    <article className="detailPage">
       <Back />
       <Hero movie={movie} />
 
@@ -107,33 +66,36 @@ const MovieDetails = () => {
             className="saveMovieBtn"
             onClick={handleClick}
             style={{
-              // backgroundColor: savedMovie ? "red" : "green",
               color: "white",
             }}
           >
             {savedMovie ? "Remove from list" : "Add to list"}
           </button>
           <article className="infoWrapper">
-            <div className="release">
-              <span>Release date: </span>
-              <span>{movie.release_date}</span>
-            </div>
+            <section className="container">
+              <div className="release">
+                <span className="title">Release date: </span>
+                <span>{movie.release_date}</span>
+              </div>
+              {/* funktion som itererar över en array av genre-ID:n för en film, För varje genre-ID letar funktionen upp dess motsvarande genre-namn i "movieGenre"-objektet Om en matchning hittas tilldelas det matchande genre-namnet till variabeln "genreName". */}
 
-            <ul>
-              {movie.genre_ids?.map((genreId, i) => {
-                const genreName = Object.keys(movieGenre).find(
-                  (key) => movieGenre[key] === genreId
-                );
-                if (genreName) {
-                  return <li key={i}>{genreName}</li>;
-                } else {
-                  return null;
-                }
-              })}
-            </ul>
+              <ul>
+                <span className="title">Genres:</span>
+                {movie.genre_ids?.map((genreId, i) => {
+                  const genreName = Object.keys(movieGenre).find(
+                    (key) => movieGenre[key] === genreId
+                  );
+                  if (genreName) {
+                    return <li key={i}>{genreName}</li>;
+                  } else {
+                    return null;
+                  }
+                })}
+              </ul>
+            </section>
             <section className="overview">
-              {" "}
-              Overview:
+              <span className="title"> Overview:</span>
+
               <p>{movie.overview}</p>
             </section>
           </article>
@@ -141,101 +103,8 @@ const MovieDetails = () => {
         {/* tomt objekt för att tvinga rendering  */}
         {forceUpdate && <></>}
       </>
-    </>
+    </article>
   );
-
-  // return (
-  //   <>
-  //     <Back />
-  //     <Hero movie={movie} />
-
-  //     <>
-  //       <div className="infoContainer">
-  //         <h2>{movie.title}</h2>
-
-  //         <button
-  //           onClick={handleClick}
-  //           style={{
-  //             backgroundColor: savedMovie ? "green" : "red",
-  //             color: "white",
-  //           }}
-  //         >
-  //           {savedMovie ? "Saved" : "Save"}
-  //         </button>
-  //         <article className="infoWrapper">
-  //           <div className="release">
-  //             <span>Release date: </span>
-  //             <span>{movie.release_date}</span>
-  //           </div>
-
-  //           <ul>
-  //             {movie.genre_ids?.map((genreId, i) => {
-  //               const genreName = Object.keys(movieGenre).find(
-  //                 (key) => movieGenre[key] === genreId
-  //               );
-  //               if (genreName) {
-  //                 return <li key={i}>{genreName}</li>;
-  //               } else {
-  //                 return null;
-  //               }
-  //             })}
-  //           </ul>
-  //           <section className="overview">
-  //             {" "}
-  //             Overview:
-  //             <p>{movie.overview}</p>
-  //           </section>
-  //         </article>
-  //       </div>
-  //     </>
-  //   </>
-  // );
-
-  // return (
-  //   <>
-  //     <Back />
-  //     {/* <Hero movie={movie} /> */}
-  //     <div className="heroContainer">
-  //       {movie && movie.backdrop_path && (
-  //         <>
-  //           <img
-  //             className="heroImage"
-  //             src={IMAGE_PATH + movie.backdrop_path}
-  //             alt="Movie poster"
-  //           />
-  //           <div className="infoContainer">
-  //             <h2>{movie.title}</h2>
-  //             <article className="infoWrapper">
-  //               <div>
-  //                 <span>Release: {movie.release_date}</span>
-  //               </div>
-
-  //               <ul>
-  //                 {movie.genre_ids?.map((genreId, i) => {
-  //                   const genreName = Object.keys(movieGenre).find(
-  //                     (key) => movieGenre[key] === genreId
-  //                   );
-  //                   if (genreName) {
-  //                     return <li key={i}>{genreName}</li>;
-  //                   } else {
-  //                     return null;
-  //                   }
-  //                 })}
-  //               </ul>
-  //               <section className="overview">
-  //                 {" "}
-  //                 Overview:
-  //                 <p>{movie.overview}</p>
-  //               </section>
-  //             </article>
-  //           </div>
-
-  //           {/* <h2 className="heroTitle">{movie.title}</h2> */}
-  //         </>
-  //       )}
-  //     </div>
-  //   </>
-  // );
 };
 
 export default MovieDetails;
