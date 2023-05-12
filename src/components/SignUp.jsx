@@ -56,6 +56,9 @@ const SignUpForm = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
+            <span className="passwordHelp">
+              Password most be at least 6 characters
+            </span>
           </div>
           <button className="btnPrimary" type="submit">
             Sign Up
