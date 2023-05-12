@@ -475,12 +475,16 @@ overflow:hidden;
    // Detaljsida
    .detailPage{
     position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
    
 .infoContainer{
 padding: 10px;
 display: flex;
 flex-direction: column;
 align-items: center;
+
 
 
 
@@ -544,7 +548,6 @@ align-items: center;
 
 .overview{
   color: aliceblue;
- 
   padding: 20px;
 }}} }
 
@@ -621,6 +624,11 @@ align-items: center;
 .infoWrapper{
  flex-direction: column;
 }
+.detailPage{
+  .infoContainer{
+    width: 100vw;
+  }
+}
 
 
 .infoContainer > .overview{
@@ -639,6 +647,13 @@ align-items: center;
       height: 360px;
    
     }
-  }
+    .infoContainer{
+      max-width: 600px;
+    }
+    }
   
+    
+   
+
+
 }

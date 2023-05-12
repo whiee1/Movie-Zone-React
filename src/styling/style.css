@@ -326,6 +326,9 @@ main {
 
 .detailPage {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .detailPage .infoContainer {
   padding: 10px;
@@ -445,6 +448,9 @@ main {
   .infoWrapper {
     flex-direction: column;
   }
+  .detailPage .infoContainer {
+    width: 100vw;
+  }
   .infoContainer > .overview {
     min-width: 90vw;
   }
@@ -457,5 +463,8 @@ main {
 @media screen and (min-width: 800px) {
   .detailPage .heroContainer {
     height: 360px;
+  }
+  .detailPage .infoContainer {
+    max-width: 600px;
   }
 }/*# sourceMappingURL=style.css.map */
