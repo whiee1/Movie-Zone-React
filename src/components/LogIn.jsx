@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-
+import AuthContext from "./store/auth_context";
 import UserAuthContext from "./store/user_auth_context";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -8,7 +8,7 @@ const LogInForm = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const context = useContext(UserAuthContext);
-
+  const pageContext = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,6 +19,7 @@ const LogInForm = () => {
       const result = await context.logIn(email, password);
       if (result.success) {
         sessionStorage.setItem("loggedIn", true);
+        pageContext.setPage(1);
         navigate("/");
       } else {
         setErrorMessage("Incorrect Email or password.");
