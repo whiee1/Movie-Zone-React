@@ -1,18 +1,16 @@
 import Card from "../components/Card";
-import { useEffect, useContext, useState } from "react";
+import { useEffect, useContext } from "react";
 import UserAuthContext from "../components/store/user_auth_context";
 
+// Hämtar in sparade filmer från användarens databas och sätter savedMovieList till responsen.likedMovies.
 const Profile = () => {
-  // const [savedMovieList, setSavedMovieList] = useState();
   const context = useContext(UserAuthContext);
-  const { setSavedMovieList, savedMovieList } = context;
+  const { setSavedMovieList, savedMovieList, getLikedMovies } = context;
   useEffect(() => {
-    context
-      .getLikedMovies()
-      .then((res) => context.setSavedMovieList(res.likedMovies));
+    getLikedMovies().then((res) => setSavedMovieList(res.likedMovies));
   }, []);
 
-  console.log(context.savedMovieList);
+  //Om likedMovied inte är tom, mappa över filmerna
   const renderList = () => {
     if (savedMovieList && savedMovieList.length > 0) {
       return savedMovieList?.map((movie) => (

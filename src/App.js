@@ -2,12 +2,10 @@ import "./styling/style.css";
 import Home from "./screens/Home";
 import MovieDetails from "./screens/MovieDetails";
 import SignUpForm from "./components/SignUp";
-import { getAuth } from "firebase/auth";
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import UserAuthContext from "./components/store/user_auth_context";
 import Nav from "./components/Nav";
 import ForgotPassword from "./components/ForgotPassword";
-import Landing from "./screens/Landing";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import LogInForm from "./components/LogIn";
 import SearchPage from "./screens/SearchPage";
@@ -18,17 +16,15 @@ function App() {
   const context = useContext(UserAuthContext);
   const isLoggedIn = sessionStorage.getItem("loggedIn");
 
+  // Kollar om användaren står som inloggad i sessionStorage, om nej så navigeras användaren till login sidan.
   useEffect(() => {
     (async () => {
       !isLoggedIn && navigate("/login");
-      const response = await context.getLikedMovies();
-      context.setSavedMovieList(response);
     })();
   }, []);
 
   return (
     <>
-      <div className="App"> Malin Movie Sida</div>
       <MovieZone />
 
       {isLoggedIn && <Nav />}

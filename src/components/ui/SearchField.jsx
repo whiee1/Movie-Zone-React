@@ -8,14 +8,15 @@ const SearchField = () => {
 
   const [key, setKey] = useState("");
 
+  //
   const search = (e) => {
     e.preventDefault();
-    context.setSearchPage(1);
-    context.setSearchKey(key);
+    context.setSearchPage(1); // När användaren gör en sökning sätter vi om sido nr för SearchPage till 1
+    context.setSearchKey(key); //Sätt searchKey till användarens sökning i context för att skicka med vid ändring av sida på SearchPage
 
     context
-      .getMovies(key)
-      .then(() => navigate(`/search/:${key}`), setKey(""))
+      .getMovies(key) //Hämta filmer med sök ordet
+      .then(() => navigate(`/search/:${key}`), setKey("")) //navigera användaren och sätt key till tom sträng
       .catch((error) => console.error(error));
   };
 

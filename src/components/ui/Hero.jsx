@@ -1,3 +1,5 @@
+//Komponent som visar stor bild på detalj sidan om det finns någon
+
 const Hero = (props) => {
   const HERO_IMAGE_PATH = process.env.REACT_APP_HERO_IMAGE_PATH;
   const { movie } = props;
