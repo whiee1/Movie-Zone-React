@@ -1,10 +1,13 @@
 import Hero from "../components/ui/Hero";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import AuthContext from "../components/store/auth_context";
 import UserAuthContext from "../components/store/user_auth_context";
 import Back from "../components/ui/Back";
 
 const MovieDetails = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   //key value par för genre och värden fårn API:et
   const movieGenre = {
     Action: 28,
